@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+        />
+        <title>Pricing Calculator</title>
+    </head>
+    <body>
+        <main class="container" x-data="calculator">
+            <form @submit.prevent="calculateHandler">
+                <article>
+                    <h3>Estimate Pricing Calculator</h3>
+                    <input type="text" placeholder="Original price" x-model="originalPrice" />
+                    <input type="number" placeholder="Quantity" min="1" x-model="quantity" />
+                    <input type="text" placeholder="Product weight (kg)" x-model="productWeight" />
+                    <input type="text" placeholder="Per kg price" x-model="perKgPrice" />
+                    <input
+                        type="text"
+                        placeholder="Local Delivery Charge"
+                        x-model="localDeliveryCharge"
+                    />
+                    <input type="text" placeholder="Profit in percent" x-model="profitInPercent" />
+                    <input type="submit" value="Calculate" />
+                </article>
+            </form>
+
+            <template x-if="isCalculated">
+                <div>
+                    <article>
+                        <h3>Single Unit</h3>
+                        <h6>Buying Cost: <span x-text="singleUnitBp"></span> Tk</h6>
+                        <h6>Selling Price: <span x-text="singleUnitSp"></span> Tk (Use in post)</h6>
+                        <h6>Profit: <span x-text="singleUnitProfit"></span> Tk</h6>
+                    </article>
+
+                    <article>
+                        <h3>Total</h3>
+                        <h6>Buying Cost: <span x-text="totalBp"></span> Tk</h6>
+                        <h6>Selling Price: <span x-text="totalSp"></span> Tk</h6>
+                        <h6>Profit: <span x-text="totalProfit"></span> Tk</h6>
+                    </article>
+                </div>
+            </template>
+        </main>
+        <script type="module" src="/src/main.js"></script>
+    </body>
+</html>
